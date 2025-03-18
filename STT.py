@@ -1,22 +1,17 @@
-import speech_recognition
-import pyttsx3
+import speech_recognition as sr
 
-recognizer=speech_recognition.Recognizer()
 
-while True:
-    try: 
+r = sr.Recognizer()
 
-        with speech_recognition.Microphone() as mic:
 
-            recognizer.adjust_for_ambient_noise(mic, duration=0.2)
-            audio = recognizer.listen(mic, timeout=10, phrase_time_limit=10)
+with sr.Microphone() as source:
+    print("Talk")
+    audio_text = r.listen(source)
+    print("Time over, thanks")
 
-            text = recognizer.recognize_google(audio)
-            text = text.lower()
-
-            print(f"Recognized {text}")
-    except speech_recognition.UnknownValueError:
-
-        recognizer = speech_recognition.Recognizer()
-        print("Could not understand, please try again.")
-        continue
+    
+    try:
+        
+        print("Text: "+r.recognize_google(audio_text))
+    except:
+         print("Sorry, I did not get that")

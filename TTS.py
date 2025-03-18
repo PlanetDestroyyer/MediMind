@@ -18,6 +18,6 @@ class TextToSpeech:
         while pygame.mixer.music.get_busy():
             continue
 
-# Example usage
+
 tts = TextToSpeech()
 tts.speak("Welcome, I am AI Doctor. How can I help you?")
